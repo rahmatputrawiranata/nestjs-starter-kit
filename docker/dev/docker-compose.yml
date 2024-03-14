@@ -1,0 +1,31 @@
+version: '3'
+name: 'you-app-chat-app'
+
+networks:
+  you_app_chat_app:
+    driver: bridge
+    
+volumes:
+  mongodb_data:
+  rabbitmq_data:
+  rabbitmq_logs:
+
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - you_app_chat_app
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    networks:
+      - you_app_chat_app
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_logs:/var/log/rabbitmq

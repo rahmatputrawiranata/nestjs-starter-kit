@@ -1,8 +1,8 @@
 version: '3'
-name: 'you-app-chat-app'
+name: 'bvarta-geodata-management-system'
 
 networks:
-  you_app_chat_app:
+  bvarta_geodata_management_system:
     driver: bridge
     
 volumes:
@@ -16,13 +16,13 @@ services:
     volumes:
       - mongodb_data:/data/db
     networks:
-      - you_app_chat_app
+      - bvarta_geodata_management_system
     ports:
       - "27017:27017"
   rabbitmq:
     image: rabbitmq:3-management-alpine
     networks:
-      - you_app_chat_app
+      - bvarta_geodata_management_system
     ports:
       - "5672:5672"
       - "15672:15672"
